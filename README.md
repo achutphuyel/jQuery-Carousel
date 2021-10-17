@@ -63,4 +63,19 @@
 </body>
 
 </html>
+Css
+#slideshow {
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.slide {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
 
