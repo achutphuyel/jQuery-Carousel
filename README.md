@@ -1,34 +1,66 @@
- <!-- Slideshow container -->
-<div class="slideshow-container">
+<!doctype html>
 
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <div class="numbertext">1 / 3</div>
-    <img src="img1.jpg" style="width:100%">
-    <div class="text">Caption Text</div>
-  </div>
+<html lang="en">
 
-  <div class="mySlides fade">
-    <div class="numbertext">2 / 3</div>
-    <img src="img2.jpg" style="width:100%">
-    <div class="text">Caption Two</div>
-  </div>
+<head>
 
-  <div class="mySlides fade">
-    <div class="numbertext">3 / 3</div>
-    <img src="img3.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
-  </div>
+<meta charset="utf-8">
 
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
+<title>jQuery Slideshow</title>
+<link href="styles.css" rel="stylesheet" />
+</head>
 
-<!-- The dots/circles -->
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
-</div> 
+<body>
+            <div id="slideshow"
+                 <img class="slide" src="images/lakeview.jpg" />
+                 <img class="slide" src="images/landscape.jpg" />
+                 <img class="slide" src="images/mountain.jpg" />
+                  <img class="slide" src="images/natural grass.jpg"/>
+                 <img class="slide" src="images/outdoor.jpg" />
+                 <img class="slide" src="images/sunshine.jpg"/>
+
+            </div>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var slideshow = (function () {
+                var counter = 0,
+                    i,
+                    j,
+                    slides = $("#slideshow .slide"),
+                    slidesLen = slides.length - 1;
+                for (i = 0, j = 9999; i < slides.length; i += 1, j -= 1) {
+                    $(slides[i]).css("z-index", j);
+                }
+                return {
+                    startSlideshow: function () {
+                        window.setInterval(function () {
+                            if (counter === 0) {
+                                slides.eq(counter).fadeOut();
+                                counter += 1;
+                            } else if (counter === slidesLen) {
+                                counter = 0;
+                                slides.eq(counter).fadeIn(function () {
+                                    slides.fadeIn();
+                                });
+                            } else {
+                                slides.eq(counter).fadeOut();
+                                counter += 1;
+                            }
+                        }, 2000);
+                    }
+                };
+            }());
+            slideshow.startSlideshow();
+        }(jQuery));
+
+            
+
+    </script>
+
+
+
+</body>
+
+</html>
+
